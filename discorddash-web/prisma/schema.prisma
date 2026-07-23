@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Server {
+  id         String    @id           // Discord Guild ID
+  name       String
+  iconUrl    String?
+  ownerId    String
+  members    Member[]
+  messages   Message[]
+  createdAt  DateTime  @default(now())
+}
+
+model Member {
+  id         String    @id           // Discord User ID
+  username   String
+  joinedAt   DateTime
+  leftAt     DateTime?
+  serverId   String
+  server     Server    @relation(fields: [serverId], references: [id])
+  messages   Message[]
+}
+
+model Message {
+  id          String    @id          // Discord Message ID
+  channelId   String
+  channelName String
+  authorId    String
+  serverId    String
+  createdAt   DateTime
+  server      Server    @relation(fields: [serverId], references: [id])
+  author      Member    @relation(fields: [authorId], references: [id])
+}
