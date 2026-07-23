@@ -1,0 +1,14 @@
+node_modules/
+.env
+.next/
+dist/
+coverage/
+.DS_Store
+
+# Agent & AI IDE folders
+.agents/
+.claude/
+.windsurf/
+skills-lock.json
+
+.AGENTS.md
