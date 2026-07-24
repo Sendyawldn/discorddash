@@ -11,7 +11,7 @@
   </p>
 
   <br />
-  <img src="./docs/image.png" alt="DiscordDash Overview Dashboard" width="800" style="border-radius: 12px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);" />
+  <img src="./docs/assets/image.png" alt="DiscordDash Overview Dashboard" width="800" style="border-radius: 12px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);" />
 
 </div>
 
