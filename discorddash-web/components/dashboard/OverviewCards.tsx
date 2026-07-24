@@ -48,7 +48,7 @@ export function OverviewCards({ serverId }: { serverId: string }) {
           <Users className="h-4 w-4 text-[#5865F2]" />
         </CardHeader>
         <CardContent className="relative z-10">
-          <div className="text-3xl font-bold">{data?.totalMembers.toLocaleString()}</div>
+          <div className="text-3xl font-bold text-white">{data?.totalMembers.toLocaleString()}</div>
           <p className="text-xs text-green-400 mt-1 flex items-center">
             <Activity className="w-3 h-3 mr-1" /> Active community
           </p>
@@ -62,7 +62,7 @@ export function OverviewCards({ serverId }: { serverId: string }) {
           <MessageSquare className="h-4 w-4 text-purple-500" />
         </CardHeader>
         <CardContent className="relative z-10">
-          <div className="text-3xl font-bold">{data?.totalMessages.toLocaleString()}</div>
+          <div className="text-3xl font-bold text-white">{data?.totalMessages.toLocaleString()}</div>
           <p className="text-xs text-zinc-500 mt-1">All time messages</p>
         </CardContent>
       </Card>
@@ -74,7 +74,7 @@ export function OverviewCards({ serverId }: { serverId: string }) {
           <Activity className="h-4 w-4 text-emerald-500" />
         </CardHeader>
         <CardContent className="relative z-10">
-          <div className="text-3xl font-bold">{data?.messagesLast7Days.toLocaleString()}</div>
+          <div className="text-3xl font-bold text-white">{data?.messagesLast7Days.toLocaleString()}</div>
           <p className="text-xs text-emerald-400 mt-1">Recent activity volume</p>
         </CardContent>
       </Card>
