@@ -1,8 +1,6 @@
+import 'dotenv/config'; // MUST BE FIRST
 import { Client, GatewayIntentBits, Events } from 'discord.js';
-import dotenv from 'dotenv';
 import { prisma } from './src/db.js';
-
-dotenv.config(); // Load .env from current folder
 
 const client = new Client({
   intents: [

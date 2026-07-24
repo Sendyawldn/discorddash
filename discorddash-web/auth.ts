@@ -21,8 +21,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async session({ session, token }) {
       // Expose the Discord user ID to the client via session
-      if (token.discordId) {
-        session.user.id = token.discordId as string;
+      // NextAuth automatically puts the provider's ID in token.sub
+      if (token.discordId || token.sub) {
+        session.user.id = (token.discordId || token.sub) as string;
       }
       return session;
     },
