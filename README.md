@@ -11,7 +11,7 @@
   </p>
 
   <br />
-  <img src="./docs/dashboard-preview.png" alt="DiscordDash Overview Dashboard" width="800" style="border-radius: 12px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);" />
+  <img src="./docs/image.png" alt="DiscordDash Overview Dashboard" width="800" style="border-radius: 12px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);" />
 
 </div>
 
@@ -21,7 +21,7 @@
 
 DiscordDash is a modern, privacy-first web dashboard that visualizes your Discord server's activity in real-time. Built with a powerful **Next.js 15 App Router** frontend and a relentless **Node.js 22** background worker bot, DiscordDash turns raw community chatter into beautiful, actionable insights.
 
-> **Privacy First**: DiscordDash strictly collects *metadata* (who, when, where) and never stores actual message content.
+> **Privacy First**: DiscordDash strictly collects _metadata_ (who, when, where) and never stores actual message content.
 
 ## ✨ Features
 
@@ -41,12 +41,15 @@ discorddash/
 ## 🚀 Getting Started
 
 ### 1. Prerequisites
+
 - Node.js 22+
 - PostgreSQL Database (e.g., Supabase, Neon)
 - Discord Developer Portal App (Bot Token & OAuth2 Credentials)
 
 ### 2. Environment Setup
+
 Create a `.env` file in the root directory:
+
 ```env
 # Discord Credentials
 DISCORD_BOT_TOKEN=your_bot_token
@@ -62,6 +65,7 @@ NEXTAUTH_URL=http://localhost:3000
 ```
 
 ### 3. Database Initialization
+
 ```bash
 cd discorddash-web
 npx prisma db push
@@ -69,7 +73,9 @@ npx prisma db push
 ```
 
 ### 4. Running Locally
+
 Run the bot (Data Collector):
+
 ```bash
 cd discorddash-bot
 npm install
@@ -77,6 +83,7 @@ npm run dev
 ```
 
 Run the Web Dashboard:
+
 ```bash
 cd discorddash-web
 npm install
