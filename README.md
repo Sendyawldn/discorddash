@@ -1,102 +1,89 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Sendyawldn/discorddash/main/discorddash-web/public/globe.svg" width="100" alt="Logo" />
-  <h1>DiscordDash</h1>
-  <p><strong>A Modern, Premium Dashboard for Real-Time Discord Server Analytics</strong></p>
+  
+  # 🚀 DiscordDash
+  **Real-Time Analytics & Insights for your Discord Server**
 
-  [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
-  [![Node.js](https://img.shields.io/badge/Node.js-22-339933?style=flat-square&logo=nodedotjs)](https://nodejs.org/)
-  [![Discord.js](https://img.shields.io/badge/Discord.js-v14-5865F2?style=flat-square&logo=discord)](https://discord.js.org/)
-  [![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=flat-square&logo=prisma)](https://www.prisma.io/)
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+  <p>
+    <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+    <img src="https://img.shields.io/badge/Discord.js-v14-5865F2?style=for-the-badge&logo=discord" alt="Discord.js" />
+    <img src="https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma" alt="Prisma" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css" alt="Tailwind CSS" />
+  </p>
+
 </div>
 
 ---
 
-## 🎨 Dashboard Preview
+## 🌟 About DiscordDash
 
-![DiscordDash UI Mockup](docs/assets/dashboard_mockup.png)
-*A conceptual look at the modern, premium dark-mode interface of DiscordDash.*
+DiscordDash is a modern, privacy-first web dashboard that visualizes your Discord server's activity in real-time. Built with a powerful **Next.js 15 App Router** frontend and a relentless **Node.js 22** background worker bot, DiscordDash turns raw community chatter into beautiful, actionable insights.
 
----
+> **Privacy First**: DiscordDash strictly collects *metadata* (who, when, where) and never stores actual message content.
 
-## 📖 Overview
+## ✨ Features
 
-**DiscordDash** is an elegant, full-stack web application designed to visualize Discord server statistics in real-time. It provides server owners and admins with a comprehensive look at their community's health, including member activity, most active channels, server growth charts, and top user leaderboards.
+- **📊 Member Growth Tracking**: Visualize daily joins and leaves with stunning area charts.
+- **💬 Channel Heatmaps**: Instantly discover your server's peak activity hours.
+- **🏆 User Leaderboards**: Gamify your community by highlighting the top 10 most active members.
+- **🔒 Secure Authentication**: NextAuth v5 integration ensures only Server Admins/Owners can view sensitive analytics via Discord OAuth2.
 
-The project is structured as a **Monorepo** consisting of two main components:
-1. **Discord Bot (`discorddash-bot`)**: A lightweight Node.js data collector that listens to server events 24/7 without logging any sensitive message contents (strictly metadata only).
-2. **Web Dashboard (`discorddash-web`)**: A stunning frontend and API backend powered by Next.js 15, styled with Tailwind CSS v4 and Shadcn UI.
+## 🏗️ Monorepo Architecture
 
----
-
-## ✨ Key Features
-
-- **📊 Member Statistics**: Track total members, track daily/weekly growth with beautiful area charts, and monitor join vs. leave metrics.
-- **💬 Channel Activity Heatmaps**: Discover your most active channels and peak activity hours natively visualized via Recharts.
-- **🏆 User Leaderboards**: Showcase the top 10 most active members to drive engagement.
-- **📈 Server Overview**: A clean summary of total channels, roles, real-time online members, and a 7-day activity snapshot.
-- **🔒 Privacy First**: We value your community's privacy. **No message content is ever saved to our databases**, only non-identifying metadata (timestamps, channel IDs).
-
----
-
-## 🛠️ Tech Stack
-
-### Web Application (`discorddash-web`)
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) + [Shadcn UI](https://ui.shadcn.com/)
-- **Authentication**: [NextAuth.js v5](https://next-auth.js.org/) (Discord OAuth2 Provider)
-- **Database**: [PostgreSQL](https://www.postgresql.org/) (via [Supabase](https://supabase.com/))
-- **ORM**: [Prisma v7](https://www.prisma.io/)
-- **Charts**: [Recharts](https://recharts.org/)
-
-### Data Collector (`discorddash-bot`)
-- **Runtime**: [Node.js 22 LTS](https://nodejs.org/)
-- **Library**: [Discord.js v14](https://discord.js.org/)
-- **Language**: TypeScript
-
----
+```text
+discorddash/
+├── discorddash-bot/      # The 24/7 Data Collector (Node.js + discord.js)
+└── discorddash-web/      # The Analytics Dashboard (Next.js 15 + Tailwind + Recharts)
+```
 
 ## 🚀 Getting Started
 
-Follow these steps to set up the project locally.
-
-### Prerequisites
+### 1. Prerequisites
 - Node.js 22+
-- PostgreSQL Database URL (e.g., Supabase)
-- A Discord Application (Bot Token, Client ID, Client Secret)
+- PostgreSQL Database (e.g., Supabase, Neon)
+- Discord Developer Portal App (Bot Token & OAuth2 Credentials)
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/Sendyawldn/discorddash.git
-cd discorddash
+### 2. Environment Setup
+Create a `.env` file in the root directory:
+```env
+# Discord Credentials
+DISCORD_BOT_TOKEN=your_bot_token
+DISCORD_CLIENT_ID=your_client_id
+DISCORD_CLIENT_SECRET=your_client_secret
+
+# Database
+DATABASE_URL=postgresql://user:password@host:port/db
+
+# NextAuth
+NEXTAUTH_SECRET=your_secret_key
+NEXTAUTH_URL=http://localhost:3000
 ```
 
-### 2. Configure Environment Variables
-Navigate into both the bot and web directories and create `.env` files based on the provided `.env.example`.
-
-### 3. Setup the Web Dashboard
+### 3. Database Initialization
 ```bash
 cd discorddash-web
-npm install
-npx prisma db push # or npx prisma migrate dev
-npm run dev
+npx prisma db push
+# or npx prisma migrate dev
 ```
-The dashboard will be available at `http://localhost:3000`.
 
-### 4. Run the Discord Bot
+### 4. Running Locally
+Run the bot (Data Collector):
 ```bash
 cd discorddash-bot
 npm install
 npm run dev
 ```
 
----
+Run the Web Dashboard:
+```bash
+cd discorddash-web
+npm install
+npm run dev
+```
 
-## 📜 Data Privacy Notice
-This project strictly adheres to data privacy guidelines. The bot requires the `MESSAGE CONTENT INTENT` solely for analytical metrics (like message counting), but the content of the messages themselves is intentionally omitted from our database schema.
+Visit `http://localhost:3000/login` to sign in and view your dashboard!
 
 ---
 
 <div align="center">
-  <i>Built with ❤️ for the Discord community.</i>
+  <i>Built with ❤️ using the Agentic IDE.</i>
 </div>
