@@ -15,13 +15,18 @@ export function OverviewCards({ serverId }: { serverId: string }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`/api/servers/${serverId}/overview`)
-      .then((res) => res.json())
-      .then((d) => {
-        setData(d.stats);
-        setLoading(false);
-      })
-      .catch(console.error);
+    const fetchData = () => {
+      fetch(`/api/servers/${serverId}/overview`)
+        .then((res) => res.json())
+        .then((d) => {
+          setData(d.stats);
+          setLoading(false);
+        })
+        .catch(console.error);
+    };
+    fetchData();
+    const interval = setInterval(fetchData, 5000); // 5 seconds polling
+    return () => clearInterval(interval);
   }, [serverId]);
 
   if (loading) {

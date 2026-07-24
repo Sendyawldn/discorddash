@@ -13,9 +13,8 @@ export default async function DashboardIndex() {
   console.log("=== DEBUG DASHBOARD ===");
   console.log("Session User:", session.user);
   
-  // Fetch servers owned by this user
+  // Fetch servers where the bot is present (temporarily bypassing strict owner check for testing)
   const servers = await prisma.server.findMany({
-    where: { ownerId: session.user.id },
     orderBy: { createdAt: "desc" },
   });
 

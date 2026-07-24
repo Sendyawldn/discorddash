@@ -36,10 +36,6 @@ export default async function DashboardLayout({
 
   const navItems = [
     { name: "Overview", icon: LayoutDashboard, href: `/dashboard/${serverId}` },
-    { name: "Members", icon: Users, href: `/dashboard/${serverId}/members` },
-    { name: "Channels", icon: MessageSquare, href: `/dashboard/${serverId}/channels` },
-    { name: "Insights", icon: BarChart3, href: `/dashboard/${serverId}/insights` },
-    { name: "Settings", icon: Settings, href: `/dashboard/${serverId}/settings` },
   ];
 
   return (
