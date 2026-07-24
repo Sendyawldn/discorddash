@@ -12,16 +12,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt({ token, user, account, profile }) {
       // Pass the Discord user ID to the token on initial sign in
-      if (account && user) {
+      if (profile?.id) {
+        token.discordId = profile.id;
+      } else if (account && user) {
         token.discordId = user.id;
       }
       return token;
     },
     async session({ session, token }) {
       // Expose the Discord user ID to the client via session
-      // NextAuth automatically puts the provider's ID in token.sub
       if (token.discordId || token.sub) {
         session.user.id = (token.discordId || token.sub) as string;
       }

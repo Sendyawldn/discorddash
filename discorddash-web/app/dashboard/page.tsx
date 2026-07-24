@@ -10,6 +10,9 @@ export default async function DashboardIndex() {
   const session = await auth();
   if (!session?.user?.id) redirect("/login");
 
+  console.log("=== DEBUG DASHBOARD ===");
+  console.log("Session User:", session.user);
+  
   // Fetch servers owned by this user
   const servers = await prisma.server.findMany({
     where: { ownerId: session.user.id },
