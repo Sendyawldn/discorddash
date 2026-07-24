@@ -14,6 +14,8 @@ model Server {
   members    Member[]
   messages   Message[]
   createdAt  DateTime  @default(now())
+
+  @@index([ownerId])
 }
 
 model Member {
@@ -24,6 +26,10 @@ model Member {
   serverId   String
   server     Server    @relation(fields: [serverId], references: [id])
   messages   Message[]
+
+  @@index([serverId])
+  @@index([joinedAt])
+  @@index([leftAt])
 }
 
 model Message {
@@ -35,4 +41,9 @@ model Message {
   createdAt   DateTime
   server      Server    @relation(fields: [serverId], references: [id])
   author      Member    @relation(fields: [authorId], references: [id])
+
+  @@index([serverId])
+  @@index([channelId])
+  @@index([authorId])
+  @@index([createdAt])
 }
