@@ -1,63 +1,70 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, BarChart3, Users, Zap } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-zinc-950 text-white selection:bg-[#5865F2] selection:text-white flex flex-col">
+      {/* Navbar */}
+      <header className="border-b border-zinc-800/50 bg-zinc-950/50 backdrop-blur-md fixed top-0 w-full z-50">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
+            <BarChart3 className="w-6 h-6 text-[#5865F2]" />
+            DiscordDash
+          </div>
+          <Link href="/login">
+            <Button variant="outline" className="border-zinc-700 hover:bg-zinc-800 text-zinc-300">
+              Login
+            </Button>
+          </Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+
+      {/* Hero Section */}
+      <main className="flex-1 flex flex-col items-center justify-center pt-32 pb-20 px-6 relative overflow-hidden">
+        {/* Glow Effects */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#5865F2]/20 blur-[120px] rounded-full pointer-events-none" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/50 border border-zinc-800 text-sm text-zinc-300 backdrop-blur-sm mb-4">
+            <Zap className="w-4 h-4 text-yellow-500" />
+            <span>Now with real-time Prisma analytics</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-br from-white via-white to-zinc-500 bg-clip-text text-transparent">
+            Unlock Your Server's <br className="hidden md:block" />
+            <span className="text-[#5865F2]">True Potential</span>
+          </h1>
+          
+          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+            Get beautiful, real-time insights into your Discord community. Track member growth, discover peak activity hours, and highlight your top contributors securely.
+          </p>
+          
+          <div className="flex items-center justify-center gap-4 pt-4">
+            <Link href="/dashboard">
+              <Button className="bg-[#5865F2] hover:bg-[#4752C4] text-white px-8 py-6 text-lg rounded-full shadow-[0_0_20px_rgba(88,101,242,0.4)] transition-all hover:shadow-[0_0_30px_rgba(88,101,242,0.6)]">
+                Go to Dashboard
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Feature grid preview */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto mt-24 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { icon: Users, title: "Member Growth", desc: "Track joins and leaves with precision." },
+            { icon: BarChart3, title: "Activity Heatmaps", desc: "Know exactly when your server is most active." },
+            { icon: Zap, title: "Leaderboards", desc: "Gamify participation with live rankings." }
+          ].map((feature, i) => (
+            <div key={i} className="bg-zinc-900/40 border border-zinc-800/60 rounded-2xl p-6 backdrop-blur-sm hover:border-zinc-700 transition-colors text-left">
+              <div className="w-12 h-12 bg-zinc-800/80 rounded-xl flex items-center justify-center mb-4">
+                <feature.icon className="w-6 h-6 text-[#5865F2]" />
+              </div>
+              <h3 className="text-xl font-bold text-zinc-100 mb-2">{feature.title}</h3>
+              <p className="text-zinc-400">{feature.desc}</p>
+            </div>
+          ))}
         </div>
       </main>
     </div>
