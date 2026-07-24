@@ -10,6 +10,9 @@
     <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css" alt="Tailwind CSS" />
   </p>
 
+  <br />
+  <img src="./docs/dashboard-preview.png" alt="DiscordDash Overview Dashboard" width="800" style="border-radius: 12px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);" />
+
 </div>
 
 ---
