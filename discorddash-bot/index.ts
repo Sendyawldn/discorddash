@@ -32,7 +32,30 @@ client.once(Events.ClientReady, async (readyClient) => {
           ownerId: guild.ownerId,
         },
       });
-      console.log(`Synced server: ${guild.name} (${guildId})`);
+      // Sync members
+      console.log(`Fetching members for ${guild.name}...`);
+      const members = await guild.members.fetch();
+      let memberCount = 0;
+      for (const [memberId, member] of members) {
+        if (!member.user.bot) {
+          try {
+            await prisma.member.upsert({
+              where: { id: memberId },
+              update: { username: member.user.username },
+              create: {
+                id: memberId,
+                username: member.user.username,
+                joinedAt: member.joinedAt ?? new Date(),
+                serverId: guildId,
+              },
+            });
+            memberCount++;
+          } catch (e) {
+            console.error(`Error syncing member ${member.user.username}:`, e);
+          }
+        }
+      }
+      console.log(`Synced server: ${guild.name} (${guildId}) with ${memberCount} members`);
     } catch (error) {
       console.error(`Failed to sync server ${guild.name}:`, error);
     }
